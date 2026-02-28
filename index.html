@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meliora Honey | Premium Organic Honey - Peshawar</title>
+    <meta name="description" content="Premium organic honey from Peshawar. 100% pure, natural honey varieties including Beri, Sidr, Acacia, and Wild Forest honey.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --dark-gold: #B8941F;
+            --light-gold: #F4E4BC;
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--black);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gold);
+            border-radius: 4px;
+        }
+        
+        /* Gold Gradient Text */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--light-gold) 50%, var(--primary-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Gold Button */
+        .btn-gold {
+            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--dark-gold) 100%);
+            color: var(--black);
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-gold:hover::before {
+            left: 100%;
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Outline Button */
+        .btn-outline {
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-gold);
+            color: var(--black);
+        }
+        
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(184, 148, 31, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Shine Effect */
+        @keyframes shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        .shine-text {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            animation: shine 3s infinite;
+        }
+        
+        /* Product Card */
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .product-card:hover::before {
+            opacity: 1;
+        }
+        
+        .product-image {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.08);
+        }
+        
+        /* Price Tag */
+        .price-tag {
+            background: linear-gradient(135deg, var(--primary-gold), var(--dark-gold));
+            color: var(--black);
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 0 0 0 12px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 0.95rem;
+            z-index: 10;
+        }
+        
+        /* Section Divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+            opacity: 0.3;
+        }
+        
+        /* Stats Counter */
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-gold), var(--light-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Navigation */
+        .nav-scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* Loading Screen */
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: var(--black);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-circle {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(212, 175, 55, 0.2);
+            border-top-color: var(--primary-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        /* Custom Cursor Effect */
+        .cursor-glow {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="text-center">
+            <div class="loader-circle mx-auto mb-4"></div>
+            <p class="text-gold-gradient font-semibold tracking-widest text-sm">MELIORA HONEY</p>
+        </div>
+    </div>
+
+    <!-- Custom Cursor Glow -->
+    <div class="cursor-glow hidden md:block" id="cursorGlow"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 py-4" id="navbar">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-black font-bold text-lg group-hover:scale-110 transition-transform">
+                        M
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-white tracking-wide">MELIORA</h1>
+                        <p class="text-xs text-yellow-500 tracking-widest uppercase">Premium Honey</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="text-gray-300 hover:text-yellow-400 transition-colors text-sm font-medium">Home</a>
+                    <a href="#products" class="text-gray-300 hover:text-yellow-400 transition-colors text-sm font-medium">Products</a>
+                    <a href="#about" class="text-gray-300 hover:text-yellow-400 transition-colors text-sm font-medium">About</a>
+                    <a href="#contact" class="text-gray-300 hover:text-yellow-400 transition-colors text-sm font-medium">Contact</a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <button onclick="openOrderModal()" class="btn-gold px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2">
+                        <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                        Order Now
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden" id="mobileMenu">
+        <div class="flex flex-col items-center justify-center h-full gap-8">
+            <button class="absolute top-6 right-6 text-white" onclick="toggleMobileMenu()">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            <a href="#home" onclick="toggleMobileMenu()" class="text-2xl font-playfair text-white hover:text-yellow-400 transition-colors">Home</a>
+            <a href="#products" onclick="toggleMobileMenu()" class="text-2xl font-playfair text-white hover:text-yellow-400 transition-colors">Products</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="text-2xl font-playfair text-white hover:text-yellow-400 transition-colors">About</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="text-2xl font-playfair text-white hover:text-yellow-400 transition-colors">Contact</a>
+            <button onclick="openOrderModal(); toggleMobileMenu();" class="btn-gold px-8 py-3 rounded-full text-lg font-semibold mt-4">
+                Order Now
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 pt-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 reveal">
+                        <span class="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+                        <span class="text-yellow-400 text-sm font-medium tracking-wider uppercase">Since 2014</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight reveal">
+                        Nature's <br>
+                        <span class="text-gold-gradient italic">Liquid Gold</span>
+                    </h1>
+                    
+                    <p class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 reveal">
+                        Experience the purest organic honey from the pristine valleys of Peshawar. 
+                        Each drop tells a story of tradition, purity, and unmatched quality.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal">
+                        <button onclick="scrollToProducts()" class="btn-gold px-8 py-4 rounded-full text-base font-semibold flex items-center justify-center gap-2">
+                            Explore Collection
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                        <button onclick="openDirections()" class="btn-outline px-8 py-4 rounded-full text-base font-semibold flex items-center justify-center gap-2">
+                            <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            Visit Store
+                        </button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 reveal">
+                        <div class="text-center">
+                            <div class="stat-number text-3xl">15+</div>
+                            <p class="text-gray-500 text-sm mt-1">Varieties</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="stat-number text-3xl">10K+</div>
+                            <p class="text-gray-500 text-sm mt-1">Customers</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="stat-number text-3xl">100%</div>
+                            <p class="text-gray-500 text-sm mt-1">Organic</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Image -->
+                <div class="relative reveal">
+                    <div class="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full blur-3xl animate-pulse"></div>
+                    <img src="https://kimi-web-img.moonshot.cn/img/img.freepik.com/3365cc8a0aa4a5e46b01c8178418b51f30ecd87d.jpg" 
+                         alt="Premium Honey" 
+                         class="relative w-full max-w-lg mx-auto rounded-3xl shadow-2xl animate-float object-cover">
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -left-6 glass-card px-6 py-4 rounded-2xl border border-yellow-500/20">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center text-black">
+                                <i data-lucide="award" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold">Premium Quality</p>
+                                <p class="text-yellow-500 text-sm">Certified Organic</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-yellow-500/30 rounded-full flex justify-center pt-2">
+                <div class="w-1.5 h-3 bg-yellow-500 rounded-full animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-3xl text-center group reveal">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="leaf" class="w-8 h-8 text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">100% Organic</h3>
+                    <p class="text-gray-400">Pure, natural honey without any additives or preservatives. Direct from our bee farms to your table.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl text-center group reveal">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Lab Tested</h3>
+                    <p class="text-gray-400">Every batch undergoes rigorous quality testing to ensure purity and authenticity.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl text-center group reveal">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="truck" class="w-8 h-8 text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Fast Delivery</h3>
+                    <p class="text-gray-400">Free delivery across Peshawar. Your honey reaches you fresh within 24 hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider container mx-auto"></div>
+
+    <!-- Products Section -->
+    <section id="products" class="py-24">
+        <div class="container mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-yellow-500 text-sm font-semibold tracking-widest uppercase reveal">Our Collection</span>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 mb-6 reveal">
+                    Premium <span class="text-gold-gradient">Honey</span> Varieties
+                </h2>
+                <p class="text-gray-400 text-lg reveal">
+                    Discover our exclusive range of pure, organic honey sourced from the finest bee farms in Pakistan.
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+                <button onclick="filterProducts('all')" class="filter-btn active px-6 py-2.5 rounded-full border border-yellow-500/30 bg-yellow-500 text-black font-semibold text-sm transition-all" data-filter="all">All</button>
+                <button onclick="filterProducts('premium')" class="filter-btn px-6 py-2.5 rounded-full border border-yellow-500/30 text-gray-300 hover:border-yellow-500 hover:text-yellow-400 font-medium text-sm transition-all" data-filter="premium">Premium</button>
+                <button onclick="filterProducts('organic')" class="filter-btn px-6 py-2.5 rounded-full border border-yellow-500/30 text-gray-300 hover:border-yellow-500 hover:text-yellow-400 font-medium text-sm transition-all" data-filter="organic">Organic</button>
+                <button onclick="filterProducts('infused')" class="filter-btn px-6 py-2.5 rounded-full border border-yellow-500/30 text-gray-300 hover:border-yellow-500 hover:text-yellow-400 font-medium text-sm transition-all" data-filter="infused">Infused</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="productsGrid">
+                
+                <!-- Product 1: Beri Honey (Sidr) -->
+                <div class="product-card group reveal" data-category="premium">
+                    <div class="relative h-80 overflow-hidden rounded-t-2xl bg-gradient-to-b from-gray-800 to-gray-900">
+                        <img src="https://kimi-web-img.moonshot.cn/img/aurumapis.ae/8a7ade89f39207637c563e82a5874d071f8166d0.jpg" 
+                             alt="Beri Honey" 
+                             class="product-image w-full h-full object-cover">
+                        <div class="price-tag">Rs. 3,500/kg</div>
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 text-xs font-semibold backdrop-blur-sm">
+                            Bestseller
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Beri Honey</h3>
+                        <p class="text-yellow-500 text-sm font-medium mb-2">Sidr Honey - بری کا شہد</p>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Rare and precious honey from the ancient Beri (Sidr) trees of Waziristan and Kashmir. Known for its medicinal properties, rich buttery texture, and distinctive aroma. Highly sought after for its immune-boosting benefits.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                <span class="block">500g: Rs. 1,800</span>
+                            </div>
+                            <button onclick="quickOrder('Beri Honey (Sidr)', 3500)" class="btn-gold px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                                Order
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Acacia Honey -->
+                <div class="product-card group reveal" data-category="organic">
+                    <div class="relative h-80 overflow-hidden rounded-t-2xl bg-gradient-to-b from-gray-800 to-gray-900">
+                        <img src="https://kimi-web-img.moonshot.cn/img/media.gettyimages.com/b92504a69c8c614f07bf668f8cba7ff983ac87bf.jpg" 
+                             alt="Acacia Honey" 
+                             class="product-image w-full h-full object-cover">
+                        <div class="price-tag">Rs. 1,600/kg</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Acacia Honey</h3>
+                        <p class="text-yellow-500 text-sm font-medium mb-2">Kikar Honey - کیکر کا شہد</p>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Light, clear honey with a delicate floral taste. Slow to crystallize, making it perfect for daily use and sweetening beverages. Sourced from the pristine Acacia forests.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                <span class="block">500g: Rs. 850</span>
+                            </div>
+                            <button onclick="quickOrder('Acacia Honey', 1600)" class="btn-gold px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                                Order
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Wild Forest Honey -->
+                <div class="product-card group reveal" data-category="organic">
+                    <div class="relative h-80 overflow-hidden rounded-t-2xl bg-gradient-to-b from-gray-800 to-gray-900">
+                        <img src="https://kimi-web-img.moonshot.cn/img/media.gettyimages.com/c4942595c433c7e8b07a02d6ded9448ed4764637.jpg" 
+                             alt="Wild Forest Honey" 
+                             class="product-image w-full h-full object-cover">
+                        <div class="price-tag">Rs. 1,400/kg</div>
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-green-500/20 border border-green-500/30 text-green-400 text-xs font-semibold backdrop-blur-sm">
+                            Organic
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Wild Forest Honey</h3>
+                        <p class="text-yellow-500 text-sm font-medium mb-2">Jungli Honey - جنگلی شہد</p>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Raw, unfiltered honey collected from wildflowers in the Himalayan foothills. Rich in antioxidants, enzymes, and natural pollen for maximum health benefits.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                <span class="block">500g: Rs. 750</span>
+                            </div>
+                            <button onclick="quickOrder('Wild Forest Honey', 1400)" class="btn-gold px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                                Order
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Black Seed Honey -->
+                <div class="product-card group reveal" data-category="infused">
+                    <div class="relative h-80 overflow-hidden rounded-t-2xl bg-gradient-to-b from-gray-800 to-gray-900">
+                        <img src="https://kimi-web-img.moonshot.cn/img/haramainfoods.com/ff87d51e07a4cac773443155690c83946d1f2f4c.webp" 
+                             alt="Black Seed Honey" 
+                             class="product-image w-full h-full object-cover">
+                        <div class="price-tag">Rs. 2,000/kg</div>
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-400 text-xs font-semibold backdrop-blur-sm">
+                            Medicinal
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Black Seed Honey</h3>
+                        <p class="text-yellow-500 text-sm font-medium mb-2">Kalonji Honey - کلونجی شہد</p>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Premium honey infused with Kalonji (Nigella Sativa). A powerful combination for boosting immunity, improving digestion, and overall wellness.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                <span class="block">500g: Rs. 1,100</span>
+                            </div>
+                            <button onclick="quickOrder('Black Seed Honey', 2000)" class="btn-gold px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                                Order
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5: Honeycomb -->
+                <div class="product-card group reveal" data-category="premium">
+                    <div class="relative h-80 overflow-hidden rounded-t-2xl bg-gradient-to-b from-gray-800 to-gray-900">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.smileyhoney.com/cec102159bea0627e2705293bd22bf8c32f5e236.jpg" 
+                             alt="Honeycomb" 
+                             class="product-image w-full h-full object-cover">
+                        <div class="price-tag">Rs. 2,500/kg</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Natural Honeycomb</h3>
+                        <p class="text-yellow-500 text-sm font-medium mb-2">Chatta - چھتا</p>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Pure, edible honeycomb as nature intended. Chewable, delicious, and packed with natural enzymes, propolis, and the freshest honey possible.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                <span class="block">500g: Rs. 1,300</span>
+                            </div>
+                            <button onclick="quickOrder('Honeycomb', 2500)" class="btn-gold px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                                Order
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6: Saffron Honey -->
+                <div class="product-card group reveal" data-category="infused">
+                    <div class="relative h-80 overflow-hidden rounded-t-2xl bg-gradient-to-b from-gray-800 to-gray-900">
+                        <img src="https://kimi-web-img.moonshot.cn/img/static.wixstatic.com/ca12144f1c4add99644f4310e4b5f7886896e959.jpg" 
+                             alt="Saffron Honey" 
+                             class="product-image w-full h-full object-cover">
+                        <div class="price-tag">Rs. 4,000/kg</div>
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-red-500/20 border border-red-500/30 text-red-400 text-xs font-semibold backdrop-blur-sm">
+                            Luxury
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Saffron Honey</h3>
+                        <p class="text-yellow-500 text-sm font-medium mb-2">Zafran Honey - زعفران شہد</p>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Exquisite honey infused with premium Kashmiri saffron. A luxurious treat with a rich golden color, aromatic flavor, and numerous health benefits.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                <span class="block">250g: Rs. 1,100</span>
+                            </div>
+                            <button onclick="quickOrder('Saffron Honey', 4000)" class="btn-gold px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                                Order
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View All Button -->
+            <div class="text-center mt-12 reveal">
+                <button onclick="openOrderModal()" class="btn-outline px-8 py-4 rounded-full text-base font-semibold inline-flex items-center gap-2">
+                    View All Products
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider container mx-auto"></div>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Image -->
+                <div class="relative reveal">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-3xl blur-2xl"></div>
+                    <img src="https://kimi-web-img.moonshot.cn/img/images.squarespace-cdn.com/c32858185ac1aaf5ba11f2d45099cfc02a8e71e8" 
+                         alt="About Meliora Honey" 
+                         class="relative rounded-3xl shadow-2xl w-full object-cover">
+                    
+                    <!-- Experience Badge -->
+                    <div class="absolute -bottom-6 -right-6 glass-card p-6 rounded-2xl border border-yellow-500/20">
+                        <div class="text-4xl font-bold text-gold-gradient">10+</div>
+                        <p class="text-gray-400 text-sm">Years of Excellence</p>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="space-y-6">
+                    <span class="text-yellow-500 text-sm font-semibold tracking-widest uppercase reveal">About Us</span>
+                    <h2 class="text-4xl md:text-5xl font-bold leading-tight reveal">
+                        Crafting Nature's <br>
+                        <span class="text-gold-gradient">Sweetest Gift</span>
+                    </h2>
+                    
+                    <p class="text-gray-400 text-lg leading-relaxed reveal">
+                        Located in the heart of <strong class="text-white">Afridi Market, Phase 4, Hayatabad, Peshawar</strong>, 
+                        Meliora Honey has been a trusted name in premium organic honey since 2014. We work directly with local beekeepers 
+                        to bring you the finest, unadulterated honey varieties.
+                    </p>
+
+                    <p class="text-gray-400 leading-relaxed reveal">
+                        Our commitment to quality ensures that every jar contains 100% pure honey, free from additives, 
+                        preservatives, or artificial processing. We believe in sustainable beekeeping practices that protect 
+                        our environment while delivering exceptional products to our customers.
+                    </p>
+
+                    <!-- Features List -->
+                    <div class="grid sm:grid-cols-2 gap-4 pt-4 reveal">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-yellow-500/10 flex items-center justify-center">
+                                <i data-lucide="check" class="w-5 h-5 text-yellow-400"></i>
+                            </div>
+                            <span class="text-gray-300">Direct from Source</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-yellow-500/10 flex items-center justify-center">
+                                <i data-lucide="check" class="w-5 h-5 text-yellow-400"></i>
+                            </div>
+                            <span class="text-gray-300">Lab Certified</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-yellow-500/10 flex items-center justify-center">
+                                <i data-lucide="check" class="w-5 h-5 text-yellow-400"></i>
+                            </div>
+                            <span class="text-gray-300">Sustainable</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-yellow-500/10 flex items-center justify-center">
+                                <i data-lucide="check" class="w-5 h-5 text-yellow-400"></i>
+                            </div>
+                            <span class="text-gray-300">Fresh Harvest</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 reveal">
+                        <button onclick="openDirections()" class="btn-gold px-8 py-4 rounded-full text-base font-semibold inline-flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            Get Directions
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider container mx-auto"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div>
+                        <span class="text-yellow-500 text-sm font-semibold tracking-widest uppercase reveal">Contact Us</span>
+                        <h2 class="text-4xl md:text-5xl font-bold mt-4 reveal">Get in Touch</h2>
+                        <p class="text-gray-400 mt-4 text-lg reveal">Visit our store or reach out to us for orders and inquiries.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4 reveal">
+                            <div class="w-14 h-14 rounded-2xl bg-yellow-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-yellow-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">Visit Our Store</h4>
+                                <p class="text-gray-400">Afridi Market, Phase 4<br>Hayatabad, Peshawar<br>25000, Pakistan</p>
+                                <button onclick="openDirections()" class="text-yellow-400 text-sm font-medium mt-2 hover:underline flex items-center gap-1">
+                                    Get Directions <i data-lucide="external-link" class="w-3 h-3"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 reveal">
+                            <div class="w-14 h-14 rounded-2xl bg-yellow-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="phone" class="w-6 h-6 text-yellow-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">Phone</h4>
+                                <a href="tel:03135356764" class="text-gray-400 hover:text-yellow-400 transition-colors text-lg">0313-5356764</a>
+                                <p class="text-gray-500 text-sm mt-1">Available 9 AM - 9 PM</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 reveal">
+                            <div class="w-14 h-14 rounded-2xl bg-yellow-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="mail" class="w-6 h-6 text-yellow-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">Email</h4>
+                                <a href="mailto:wasifhameed660@gmail.com" class="text-gray-400 hover:text-yellow-400 transition-colors">wasifhameed660@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex gap-4 pt-4 reveal">
+                        <a href="https://wa.me/923135356764" target="_blank" class="w-12 h-12 rounded-full bg-green-600 hover:bg-green-700 flex items-center justify-center transition-colors">
+                            <i data-lucide="message-circle" class="w-5 h-5 text-white"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-yellow-500/10 hover:bg-yellow-500/20 border border-yellow-500/20 flex items-center justify-center transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5 text-yellow-400"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-yellow-500/10 hover:bg-yellow-500/20 border border-yellow-500/20 flex items-center justify-center transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5 text-yellow-400"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Order Form -->
+                <div class="glass-card p-8 rounded-3xl border border-yellow-500/10 reveal">
+                    <h3 class="text-2xl font-bold mb-6">Quick Order</h3>
+                    <form onsubmit="submitOrder(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Full Name *</label>
+                            <input type="text" name="name" required 
+                                   class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-500 transition-colors"
+                                   placeholder="Enter your name">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Phone Number *</label>
+                            <input type="tel" name="phone" required 
+                                   class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-500 transition-colors"
+                                   placeholder="03XX-XXXXXXX">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Select Product *</label>
+                            <select name="product" id="contactProduct" onchange="updateContactPrice()"
+                                    class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-500 transition-colors">
+                                <option value="Beri Honey (Sidr)|3500">Beri Honey (Sidr) - Rs. 3,500/kg</option>
+                                <option value="Acacia Honey|1600">Acacia Honey - Rs. 1,600/kg</option>
+                                <option value="Wild Forest Honey|1400">Wild Forest Honey - Rs. 1,400/kg</option>
+                                <option value="Black Seed Honey|2000">Black Seed Honey - Rs. 2,000/kg</option>
+                                <option value="Honeycomb|2500">Natural Honeycomb - Rs. 2,500/kg</option>
+                                <option value="Saffron Honey|4000">Saffron Honey - Rs. 4,000/kg</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">Quantity</label>
+                                <select name="quantity" id="contactQuantity" onchange="updateContactPrice()"
+                                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-500 transition-colors">
+                                    <option value="0.5">500g</option>
+                                    <option value="1" selected>1 kg</option>
+                                    <option value="2">2 kg</option>
+                                    <option value="5">5 kg</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">Total</label>
+                                <div class="bg-yellow-500/10 border border-yellow-500/20 rounded-xl px-4 py-3 text-yellow-400 font-bold" id="contactTotal">
+                                    Rs. 3,500
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Delivery Address</label>
+                            <textarea name="address" rows="3" 
+                                      class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-500 transition-colors resize-none"
+                                      placeholder="Enter your complete address"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full btn-gold py-4 rounded-xl font-semibold text-base flex items-center justify-center gap-2">
+                            <i data-lucide="whatsapp" class="w-5 h-5"></i>
+                            Order via WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-black font-bold">
+                            M
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">MELIORA HONEY</h3>
+                            <p class="text-xs text-yellow-500 tracking-widest">PREMIUM ORGANIC</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 max-w-sm mb-6">
+                        Premium organic honey from Peshawar. 100% pure, natural, and certified. 
+                        Delivering nature's sweetness since 2014.
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="flex items-center gap-2 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-yellow-400"></i>
+                            <span>100% Pure</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-yellow-400"></i>
+                            <span>Organic</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-yellow-400"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-white">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-yellow-400 transition-colors text-sm">Home</a></li>
+                        <li><a href="#products" class="text-gray-400 hover:text-yellow-400 transition-colors text-sm">Products</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-yellow-400 transition-colors text-sm">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-yellow-400 transition-colors text-sm">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Products -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-white">Products</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors text-sm">Beri Honey (Sidr)</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors text-sm">Acacia Honey</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors text-sm">Wild Forest Honey</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors text-sm">Black Seed Honey</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">© 2024 Meliora Honey. All rights reserved.</p>
+                <p class="text-gray-500 text-sm">Crafted with excellence in Peshawar, Pakistan</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Modal -->
+    <div class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/90 backdrop-blur-sm" id="orderModal">
+        <div class="glass-card w-full max-w-lg rounded-3xl border border-yellow-500/20 p-8 transform scale-95 opacity-0 transition-all duration-300" id="modalContent">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Place Order</h3>
+                <button onclick="closeOrderModal()" class="text-gray-400 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <form onsubmit="submitOrder(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Full Name *</label>
+                    <input type="text" name="name" required 
+                           class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-500 transition-colors"
+                           placeholder="Enter your name">
+                </div>
+                
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Phone Number *</label>
+                    <input type="tel" name="phone" required 
+                           class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-500 transition-colors"
+                           placeholder="03XX-XXXXXXX">
+                </div>
+                
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Select Product *</label>
+                    <select name="product" id="modalProduct" onchange="updateModalPrice()"
+                            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-500 transition-colors">
+                        <option value="Beri Honey (Sidr)|3500">Beri Honey (Sidr) - Rs. 3,500/kg</option>
+                        <option value="Acacia Honey|1600">Acacia Honey - Rs. 1,600/kg</option>
+                        <option value="Wild Forest Honey|1400">Wild Forest Honey - Rs. 1,400/kg</option>
+                        <option value="Black Seed Honey|2000">Black Seed Honey - Rs. 2,000/kg</option>
+                        <option value="Honeycomb|2500">Natural Honeycomb - Rs. 2,500/kg</option>
+                        <option value="Saffron Honey|4000">Saffron Honey - Rs. 4,000/kg</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Quantity</label>
+                        <select name="quantity" id="modalQuantity" onchange="updateModalPrice()"
+                                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-500 transition-colors">
+                            <option value="0.5">500g</option>
+                            <option value="1" selected>1 kg</option>
+                            <option value="2">2 kg</option>
+                            <option value="5">5 kg</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Total</label>
+                        <div class="bg-yellow-500/10 border border-yellow-500/20 rounded-xl px-4 py-3 text-yellow-400 font-bold" id="modalTotal">
+                            Rs. 3,500
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Delivery Address</label>
+                    <textarea name="address" rows="3" 
+                              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-500 transition-colors resize-none"
+                              placeholder="Enter your complete address"></textarea>
+                </div>
+
+                <button type="submit" class="w-full btn-gold py-4 rounded-xl font-semibold text-base flex items-center justify-center gap-2">
+                    <i data-lucide="whatsapp" class="w-5 h-5"></i>
+                    Order via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor Glow (Desktop only)
+        const cursorGlow = document.getElementById('cursorGlow');
+        if (window.matchMedia('(pointer: fine)').matches) {
+            document.addEventListener('mousemove', (e) => {
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+            });
+        }
+
+        // Navigation Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Scroll to Products
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Open Directions
+        function openDirections() {
+            const address = "Afridi Market, Phase 4 Hayatabad, Peshawar, 25000, Pakistan";
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`, '_blank');
+        }
+
+        // GSAP Animations
+        gsap.utils.toArray('.reveal').forEach((elem, i) => {
+            gsap.fromTo(elem, 
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        // Product Filter
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('active', 'bg-yellow-500', 'text-black');
+                    btn.classList.remove('text-gray-300');
+                } else {
+                    btn.classList.remove('active', 'bg-yellow-500', 'text-black');
+                    btn.classList.add('text-gray-300');
+                }
+            });
+
+            products.forEach(product => {
+                if (category === 'all' || product.dataset.category === category) {
+                    gsap.to(product, { opacity: 1, scale: 1, duration: 0.4, display: 'block' });
+                } else {
+                    gsap.to(product, { opacity: 0, scale: 0.9, duration: 0.4, display: 'none' });
+                }
+            });
+        }
+
+        // Modal Functions
+        function openOrderModal() {
+            const modal = document.getElementById('orderModal');
+            const content = document.getElementById('modalContent');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeOrderModal() {
+            const modal = document.getElementById('orderModal');
+            const content = document.getElementById('modalContent');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        function quickOrder(product, price) {
+            openOrderModal();
+            document.getElementById('modalProduct').value = product + '|' + price;
+            updateModalPrice();
+        }
+
+        // Price Calculations
+        function updateModalPrice() {
+            const product = document.getElementById('modalProduct').value.split('|');
+            const quantity = parseFloat(document.getElementById('modalQuantity').value);
+            const total = parseInt(product[1]) * quantity;
+            document.getElementById('modalTotal').textContent = 'Rs. ' + total.toLocaleString();
+        }
+
+        function updateContactPrice() {
+            const product = document.getElementById('contactProduct').value.split('|');
+            const quantity = parseFloat(document.getElementById('contactQuantity').value);
+            const total = parseInt(product[1]) * quantity;
+            document.getElementById('contactTotal').textContent = 'Rs. ' + total.toLocaleString();
+        }
+
+        // Submit Order
+        function submitOrder(e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.name.value;
+            const phone = form.phone.value;
+            const product = form.product.value.split('|')[0];
+            const quantity = form.quantity.value;
+            const total = form.querySelector('[id$="Total"]').textContent;
+            const address = form.address.value || 'Not provided';
+
+            const message = `*New Order - Meliora Honey*%0A%0A👤 *Name:* ${name}%0A📱 *Phone:* ${phone}%0A🍯 *Product:* ${product}%0A⚖️ *Quantity:* ${quantity}kg%0A💰 *Total:* ${total}%0A📍 *Address:* ${address}%0A%0A_Please confirm availability_`;
+
+            window.open(`https://wa.me/923135356764?text=${message}`, '_blank');
+            closeOrderModal();
+        }
+
+        // Close modal on outside click
+        document.getElementById('orderModal').addEventListener('click', function(e) {
+            if (e.target === this) closeOrderModal();
+        });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeOrderModal();
+        });
+    </script>
+</body>
+</html>
